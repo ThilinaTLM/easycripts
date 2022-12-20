@@ -1,0 +1,12 @@
+version: '3'
+services:
+  larynx:
+    image: rhasspy/larynx
+    ports:
+      - 5002:5002
+    environment:
+      - HOME=${HOME}
+    volumes:
+      - "$HOME:${HOME}"
+      - /usr/share/ca-certificates:/usr/share/ca-certificates
+      - /etc/ssl/certs:/etc/ssl/certs
