@@ -1,8 +1,0 @@
-dir=/home/tlm/downloads
-file-allocation=trunc
-max-connection-per-server=4
-max-concurrent-downloads=4
-max-overall-download-limit=0
-seed-time=0
-max-upload-limit=5K
-min-split-size=25M
