@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # update apt and install basic packages
-apt update
-apt install ca-certificates curl gnupg
+sudo apt update
+sudo apt install ca-certificates curl gnupg
 
 # add docker gpg key
-install -m 0755 -d /etc/apt/keyrings
+sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-chmod a+r /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 # add docker repo
 echo \
@@ -16,10 +16,16 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # sudo apt-get update
-apt update
-apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # add user to docker group
-usermod -aG docker $USER
+sudo usermod -aG docker $USER
 newgrp docker
 
+# start docker
+read -p "Start docker now? [y/n]: " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  sudo systemctl start docker
+fi
