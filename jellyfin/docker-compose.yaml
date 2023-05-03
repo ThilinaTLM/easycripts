@@ -1,14 +1,14 @@
 version: '3.5'
 services:
   jellyfin:
-    image: jellyfin/jellyfin
+    image: 'jellyfin/jellyfin:10.8.10'
     container_name: jellyfin
-    network_mode: 'host'
+    ports:
+      - '8096:8096'
+      - '8920:8920'
     volumes:
       - ${HOME}/jellyfin/config:/config
       - ${HOME}/jellyfin/cache:/cache
       - ${HOME}/jellyfin/media:/media
       - ${HOME}/jellyfin/media2:/media2:ro
-    restart: 'no'
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    restart: 'unless-stopped'
